@@ -1,7 +1,7 @@
 require 'render_anywhere'
 
 class PdfWriter
-  include RenderAnywhere
+  # include RenderAnywhere
 
   def initialize(name)
     @name = name
@@ -15,8 +15,10 @@ class PdfWriter
   private
 
   def as_html
-    render template: "certificates/pdf",
-    layout: 'certificate',
-    locals: { name: @name }
+    ApplicationController.render(
+      template: "certificates/pdf",
+      layout: 'certificate',
+      locals: { name: @name }
+    )
   end
 end
