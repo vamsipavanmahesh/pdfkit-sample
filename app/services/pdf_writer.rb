@@ -9,9 +9,6 @@ class PdfWriter
 
   def write_pdf
     kit = PDFKit.new(as_html)
-    # kit.stylesheets << Rails.root.join(
-    #   'public' + ActionController::Base.helpers.stylesheet_path('certificates_style')
-    # ).to_s
     kit.to_file("tmp/#{@name}_certificate.pdf")
   end
 
