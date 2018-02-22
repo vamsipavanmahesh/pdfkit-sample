@@ -8,8 +8,12 @@ class PdfWriter
   end
 
   def write_pdf
-    kit = PDFKit.new(as_html)
-    kit.to_file("tmp/#{@name}_certificate.pdf")
+    File.open("tmp/#{@name}_certificate.pdf", 'wb') do |file|
+      file << render_to_string pdf: "#{@name}_certificate.pdf",
+                               template: "templates/pdf",
+                               encoding: "UTF-8",
+                               locals: { name: @name }
+    end
   end
 
   private
